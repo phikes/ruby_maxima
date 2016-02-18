@@ -7,7 +7,7 @@ module RubyMaxima
     end
 
     def method_missing(method, *args, &block)
-      @commands << "#{method}(#{args.join ','})"
+      @commands << "#{method}(#{args.map(&:inspect).join ','})"
     end
   end
 end

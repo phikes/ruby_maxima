@@ -5,13 +5,8 @@ describe RubyMaxima::Session do
     expect(subject).not_to be nil
   end
 
-  it 'allows for adding single argument commands' do
-    subject.sqrt 2
-    expect(subject.commands).to include 'sqrt(2)'
-  end
-
-  it 'allows for adding multiple argument commands' do
-    subject.sqrt 2, 3
-    expect(subject.commands).to include 'sqrt(2,3)'
+  it 'allows for adding commands' do
+    subject.sqrt 2, "2", [1,2,"3"]
+    expect(subject.commands).to include 'sqrt(2,"2",[1, 2, "3"])'
   end
 end
