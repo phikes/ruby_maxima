@@ -12,7 +12,7 @@ module RubyMaxima
       result = `maxima -r "#{commands.join ' '}"`
       puts result if @debug
       result.scan(
-        /(?<=\(%o#{@commands.count}\)).*(?=\n\(%i\d*\))/
+        /(?<=\(%o#{@commands.count}\)).*(?=\(%i\d*\))/m
       ).first.strip
     end
 
