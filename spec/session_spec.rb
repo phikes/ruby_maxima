@@ -7,7 +7,7 @@ describe RubyMaxima::Session do
 
   it 'allows for adding commands' do
     subject.sqrt 2, "2", [1,2,"3"]
-    expect(subject.commands).to include 'sqrt(2,"2",[1, 2, "3"]);'
+    expect(subject.commands).to include 'sqrt(2,2,[1,2,3]);'
   end
 
   it 'allows for execution of the commands' do
