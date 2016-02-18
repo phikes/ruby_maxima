@@ -17,7 +17,15 @@ module RubyMaxima
     end
 
     def method_missing(method, *args, &block)
-      @commands << "#{method}(#{args.map(&:inspect).join ','});"
+      translated_args = args.map do |arg|
+        if arg.kind_of? Hash
+          arg.map {|(key, value)| "#{key} = #{value}"}.join ','
+        else
+          arg.inspect
+        end
+      end
+
+      @commands << "#{method}(#{translated_args.join ','});"
     end
   end
 end

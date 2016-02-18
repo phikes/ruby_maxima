@@ -21,4 +21,9 @@ describe RubyMaxima::Session do
     expect(STDOUT).to receive(:puts)
     subject.execute
   end
+
+  it 'translates hashes correctly' do
+    subject.sqrt test: 3
+    expect(subject.commands).to include 'sqrt(test = 3);'
+  end
 end
