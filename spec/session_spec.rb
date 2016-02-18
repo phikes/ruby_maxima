@@ -14,4 +14,11 @@ describe RubyMaxima::Session do
     subject.sqrt 16
     expect(subject.execute).to eq '4'
   end
+
+  it 'allows for debugging the maxima calls' do
+    subject.debug = true
+    subject.sqrt 16
+    expect(STDOUT).to receive(:puts)
+    subject.execute
+  end
 end

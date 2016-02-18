@@ -1,13 +1,17 @@
 module RubyMaxima
   class Session
     attr_reader :commands
+    attr_accessor :debug
 
     def initialize
       @commands = []
+      @debug = false
     end
 
     def execute
-      `maxima -r "#{commands.join ' '}"`.scan(
+      result = `maxima -r "#{commands.join ' '}"`
+      puts result if @debug
+      result.scan(
         /(?<=\(%o#{@commands.count}\)).*/
       ).first.strip
     end
