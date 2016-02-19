@@ -1,8 +1,6 @@
 # RubyMaxima
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby_maxima`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Use Maxima (a computer algebra system) from Ruby.
 
 ## Installation
 
@@ -22,7 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+RubyMaxima has a single class to work with: the `Session`. It practically translates all methods into Maxima calls, except for:
+  *`execute` - This executes all the commands in the session.
+  *`commands` - Here you can have a look at the current commands in the session.
+  *`debug=` - Here you can set the debug mode. When it is set to true, RubyMaxima will print the output from maxima.
+RubyMaxima will automatically translate hashes: `constraints: 'x+y<=100'` becomes `constraints = x+y<=100`.
+Here is an example:
+```
+  s = RubyMaxima::Session.new
+  s.load 'fmin_cobyla'
+  s.fmin_cobyla '-(x*y)',['x', 'y'], [1,1], constraints: ['x*y<=49']
+  eval s.execute # handle this line with absolute care!
+```
+
+## Todos
+
+Feel free to open issues for missing features.
+
+* I did not implement the basic arithmetic operations, since I don't need them.
+* Implement an `assigns` method on session which takes a variable name and a block and assigns the result of the block to the variable in maxima.
 
 ## Development
 
@@ -32,5 +48,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ruby_maxima.
+Bug reports and pull requests are welcome on GitHub at https://github.com/phikes/ruby_maxima.
 
