@@ -22,9 +22,9 @@ Or install it yourself as:
 
 RubyMaxima has a single class to work with: the `Session`. It practically translates all methods into Maxima calls, except for:
 
-  *`execute` - This executes all the commands in the session.
-  *`commands` - Here you can have a look at the current commands in the session.
-  *`debug=` - Here you can set the debug mode. When it is set to true, RubyMaxima will print the output from maxima.
+  * `execute` - This executes all the commands in the session.
+  * `commands` - Here you can have a look at the current commands in the session.
+  * `debug=` - Here you can set the debug mode. When it is set to true, RubyMaxima will print the output from maxima.
 
 RubyMaxima will automatically translate hashes: `constraints: 'x+y<=100'` becomes `constraints = x+y<=100`.
 Here is an example:
